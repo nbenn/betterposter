@@ -2,7 +2,7 @@
 #'
 #' @return An R Markdown output format.
 #' @export
-poster_better <- function(
+bp_landscape <- function(
   ...,
   css = NULL,
   height = NULL,
@@ -15,7 +15,7 @@ poster_better <- function(
   mathjax = FALSE,
   pandoc_args = NULL
 ) {
-  template <- pkg_resource("betterposter.html")
+  template <- pkg_resource("bp_landscape.html")
 
   if (!is.null(qrcode)) {
     if (inherits(qrcode, "list")) {
@@ -46,7 +46,7 @@ poster_better <- function(
   if (mathjax) pandoc_args <- c(pandoc_args, "--mathjax")
 
   pagedown::poster_relaxed(..., css = css, template = template,
-                           .dependencies = betterposter_dependencies(),
+                           .dependencies = bp_landscape_dependencies(),
                            pandoc_args = c(pandoc_args, qrcode),
                            md_extensions = "-autolink_bare_uris",
                            number_sections = FALSE)
@@ -115,13 +115,13 @@ pandoc_arg <- function(values) {
   ret
 }
 
-betterposter_dependencies <- function() {
+bp_landscape_dependencies <- function() {
   list(
     htmltools::htmlDependency(
       "betterposter",
       packageVersion("betterposter"),
       src = pkg_resource(),
-      stylesheet = "betterposter.css"
+      stylesheet = "bp_landscape.css"
     ),
     htmltools::htmlDependency(
       "qrcode",

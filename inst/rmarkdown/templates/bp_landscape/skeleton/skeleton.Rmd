@@ -20,7 +20,7 @@ affiliation:
   - Author of [pagedown](https://github.com/rstudio/pagedown) and much, much more!
 date: "`r Sys.Date()`"
 output:
-  betterposter::poster_better:
+  betterposter::bp_landscape:
     # Optional styling arguments
     hero_background: "#0F5D4F"
     accent_color: "#444444"
