@@ -53,6 +53,57 @@ bp_landscape <- function(
 }
 
 #' @export
+bp_portrait <- function(
+  ...,
+  css = NULL,
+  height = NULL,
+  width = NULL,
+  hero_background = NULL,
+  hero_color = NULL,
+  qrcode = NULL,
+  logo = NULL,
+  accent_color = NULL,
+  mathjax = FALSE,
+  pandoc_args = NULL
+) {
+  template <- pkg_resource("bp_portrait.html")
+
+  if (!is.null(qrcode)) {
+    if (inherits(qrcode, "list")) {
+      if (!"color_background" %in% names(qrcode) && !is.null(hero_background)) {
+        qrcode$color_background <- hero_background
+      }
+      if (!"color" %in% names(qrcode) && !is.null(hero_color)) {
+        qrcode$color <- hero_color
+      }
+      qrcode <- do.call("qrcode_options", qrcode)
+    } else if (is.character(qrcode) && length(qrcode) == 1) {
+      qrcode <- qrcode_options(qrcode, color_background = hero_background)
+    }
+    if (!inherits(qrcode, "qrcode")) {
+      stop("Please use qrcode_options() to set qrcode")
+    }
+  }
+
+  pandoc_args <- c(pandoc_args, pandoc_arg(c(
+    height = if (!is.null(height)) paste0(height, "in"),
+    width = if (!is.null(width)) paste0(width, "in"),
+    hero_background = hero_background,
+    hero_color = hero_color,
+    logo = logo,
+    accent_color = accent_color
+  )))
+
+  if (mathjax) pandoc_args <- c(pandoc_args, "--mathjax")
+
+  pagedown::poster_relaxed(..., css = css, template = template,
+                           .dependencies = bp_portrait_dependencies(),
+                           pandoc_args = c(pandoc_args, qrcode),
+                           md_extensions = "-autolink_bare_uris",
+                           number_sections = FALSE)
+}
+
+#' @export
 qrcode_options <- function(
   text,
   color_background = "#00000000",
@@ -122,6 +173,23 @@ bp_landscape_dependencies <- function() {
       packageVersion("betterposter"),
       src = pkg_resource(),
       stylesheet = "bp_landscape.css"
+    ),
+    htmltools::htmlDependency(
+      "qrcode",
+      "0.0.0",
+      src = pkg_resource(),
+      script = "qrcode.min.js"
+    )
+  )
+}
+
+bp_portrait_dependencies <- function() {
+  list(
+    htmltools::htmlDependency(
+      "betterposter",
+      packageVersion("betterposter"),
+      src = pkg_resource(),
+      stylesheet = "bp_portrait.css"
     ),
     htmltools::htmlDependency(
       "qrcode",
