@@ -33,7 +33,7 @@ output:
     mathjax: false
     # Generic rmarkdown arguments
     highlight: tango
-    self_contained: true
+    self_contained: false
 references:
   - id: fenner2012a
     title: One-click science marketing
