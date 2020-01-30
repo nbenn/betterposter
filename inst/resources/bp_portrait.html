@@ -56,15 +56,6 @@
     $if(hero_color)$
     #hero * { color: $hero_color$;}
     $endif$
-    $if(logo)$
-    #left-bar {
-      background-image: url($logo$);
-      background-repeat: no-repeat;
-      background-position: bottom center;
-      background-size: 33%;
-      margin-bottom: 2%;
-    }
-    $endif$
     $if(accent_color)$
     a, a:visited, a:hover, a:focus, a:active { color: $accent_color$; }
     strong, b, sup { color: $accent_color$; }
@@ -101,6 +92,12 @@ $endif$
 
 $body$
 
+<div id="footer">
+  $if(logo)$
+  <img id="logo" src=$logo$>
+  $endif$
+</div>
+
 <script type="text/javascript">
 (function() {
   // break words in <a> if the text and uri are identical
@@ -131,10 +128,10 @@ $endif$
 $if(qrcode_text)$
 <script type="text/javascript">
   (function() {
-    // Add qrcode div to hero
+    // Add qrcode div to footer
     var qr_el = document.createElement("div");
     qr_el.id = "qrcode";
-    document.getElementById('hero').appendChild(qr_el);
+    document.getElementById('footer').appendChild(qr_el);
   })();
 
   var qrcode = new QRCode(document.getElementById("qrcode"), {

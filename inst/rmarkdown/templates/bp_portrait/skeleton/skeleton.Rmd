@@ -53,14 +53,6 @@ references:
       month: 3
 ---
 
-```{css echo=FALSE}
-/* Adjust space at top of #hero (center panel) */
-#hero {
-  padding-top: 33%;
-}
-```
-
-
 <div id="hero">
 <!--
   Center Column of Poster

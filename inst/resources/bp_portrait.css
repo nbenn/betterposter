@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab:700|Source+Code+Pro|Source+Sans+Pro:300,700');
 
 @page {
-  width: 46.8in;
-  height: 33.1in;
+  width: 33.1in;
+  height: 46.8in;
   margin: 0;
 }
 html, body {
@@ -10,47 +10,48 @@ html, body {
 }
 html {
   font-family: "Roboto";
-  font-size: 24px;
+  font-size: 32px;
   color: #333;
-  width: 46.8in;
-  height: 33.09669in;
+  width: 33.09669in;
+  height: 46.8in;
 }
 body {
   margin: 0;
-  width: 46.3in;
-  height: 32.59669in;
+  width: 32.59669in;
+  height: 46.3in;
   display: grid;
-  grid-gap: 0.25in;
   grid-template-columns: 60px 60px;
-  padding: 0.25in !important;
+  padding: 25px !important;
 }
 
 /* ---- Grid ---- */
 body {
   grid-template-areas:
-    "T H R"
-    "L H R"
-    "L H F";
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-template-rows: 1fr 5fr 1fr;
+    "H H"
+    "T R"
+    "L R"
+    "F F";
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr 5fr 1fr;
 }
 
 #hero {
   grid-area: H;
 }
-
 #left-bar {
   grid-area: L;
 }
-
 #right-bar {
   grid-area: R;
 }
 #title-container {
   grid-area: T;
 }
-#references {
+#footer {
   grid-area: F;
+}
+#references {
+  grid-area: L;
 }
 
 img {
@@ -59,26 +60,32 @@ img {
 
 /* ---- General ---- */
 h1, h2, h3, h4 {
+  margin-block-start: 0;
   margin-block-end: 0;
   font-family: "Roboto Slab", Arial, sans-serif;
 }
+
 p {
   margin-block-start: 0.25em;
 }
+
 pre, pre.sourceCode {
   font-size: 0.8em;
   margin: 1em 0;
   padding: 0.5em 0.5em;
 }
+
 code {
   font-family: "Source Code Pro", Monaco, monospace;
 }
+
 blockquote {
   font-style: italic;
   padding-left: 1em;
   border-left: 5pt solid #dadada;
   margin-left: 0;
 }
+
 sup {
   font-size: 0.75em;
   font-style: normal;
@@ -91,15 +98,14 @@ sup {
   background: #0F5D4F;
   color: #fff;
   font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
-  padding: 10%;
-  font-size: 48px;
+  padding: 75px;
+  font-size: 56px;
 }
 
 #hero h1 {
   font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
   font-size: 3.25em;
   font-weight: 400;
-  padding-top: %;
 }
 
 #hero h1 strong {
@@ -114,23 +120,34 @@ sup {
   padding-top: 6em;
 }
 
-#hero img.qrcode {
-  position: absolute;
-  bottom: 5%;
+#footer {
+  padding: 100px;
+  position: relative;
+  background-color: #0F5D4F;
+  color: white;
+  text-align: center;
 }
 
 #qrcode {
-  position: absolute;
-  bottom: 5%;
-  left: 10%;
+  float: right;
+  vertical-align: middle;
+}
+
+#logo {
+  float: left;
+  height: 350px;
 }
 
 /* ---- Social ---- */
 
 /* ---- Title ---- */
 #title-container {
-  padding: 5% 5% 0 5%;
+  padding: 50px 50px 0px 75px;
   background: none;
+}
+
+#title-container p {
+  margin-block-start: 0;
 }
 
 #title-container .author, #title-container .affiliation {
@@ -148,21 +165,15 @@ sup {
 /* ---- Silent Bar (Left Bar) ---- */
 #left-bar {
   background: none;
-  padding: 0 5%;
+  column-count: 2;
+  padding: 0px 50px 75px 75px;
 }
 
 /* ---- Ammo Bar (Right Bar) ---- */
 #right-bar {
   background: #fff;
-  padding: 5%;
-}
-
-/* ---- References ---- */
-#references {
-  padding: 0 5%;
-}
-#references p, #references ul, #references ol {
-  font-size: 0.6em;
+  padding: 50px 75px 75px 50px;
+  border-left: 10px solid #0F5D4F;
 }
 
 /* ---- Tables ---- */
